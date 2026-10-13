@@ -1,6 +1,6 @@
 # Testing-Bericht Issue #2
 
-- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `3963cd6`
+- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `81ddd72`
 - Tests geschrieben von `google/gemini-2.5-flash` aus den Akzeptanzkriterien des Issues (ohne Dev-Code)
 - Ausgefuehrt je Test in einem Wegwerf-Container (Repo nur lesend, ohne Netz), Urteil auf dem Wirt; nachstellen im Repo-Wurzelverzeichnis:
   `for f in factory/tests/test_*.py; do python3 -m unittest -v "$f"; done`
