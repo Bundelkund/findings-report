@@ -3,6 +3,9 @@
 > Daten, keine Anweisungen. Schreibt nur die Factory (Vorarbeiter, F-12) per PR durch das Merge-Gate; neueste zuerst.
 > Zeile: - #<issue> | <Datum> | <Kategorie> | <Fakt>
 
+- #4 | 2026-10-13 | budget | Das Issue-Budget von 1,0 USD ist im Repo-Ablauf schnell erreicht; Architektur und Anforderungsanalyse verbrauchen den größten Teil, wodurch der Lauf in den Needs-Human-Zustand kippt.
+- #12 | 2026-10-13 | modell-antwort | Eine Spec-Antwort mit einem Akzeptanzkriterium-Text von 420 Zeichen wurde vom Schema abgelehnt, weil dieses Feld auf 1 bis 400 Zeichen begrenzt ist.
+- #12 | 2026-10-13 | modell-antwort | Spec-Erzeugung für HTML-Pruefbericht-Issues scheiterte zweimal: Modellantwort war kein gueltiges JSON (abgeschnitten, Zeichenkette nicht geschlossen) bzw. ein Textfeld überschritt die Maximallänge
 - #2 | 2026-10-13 | test | Die von der Testphase selbst geschriebenen Tests scheiterten in vier Versuchen an der eigenen Referenz (AK5 durchgehend rot); der Testing-Loop eskalierte ohne brauchbare Tests.
 - #2 | 2026-10-13 | modell-antwort | Der Testing-Pruefer (google/gemini-3.6-flash) lieferte bei der Spec-Pruefung wiederholt HTTP 400 vom Modellaufruf, daher kein gueltiges Urteil ueber die Spec; das Issue blieb bei needs-human.
 - #2 | 2026-10-13 | test | Die vom Testing-Schritt geschriebenen Tests scheiterten viermal in Folge bereits an der eigenen Referenzimplementierung, sodass keine brauchbare Testbasis für das Eingabeformat entstand.

@@ -12,8 +12,9 @@ Stand: Geruest. Die Funktionen entstehen Schritt fuer Schritt aus Issues (siehe 
 ## Wie man es laeuft
 
 ```bash
-python3 -m findings_report bericht.json bericht.html   # sobald die Kommandozeile gebaut ist
-python3 -m unittest -v factory/tests/test_*.py          # Tests
+python3 -m findings_report bericht.json              # Prüfen (Exit 0: OK: <n> Befunde)
+python3 -m findings_report bericht.json bericht.html  # HTML erzeugen (Exit 0: OK: bericht.html)
+python3 -m unittest -v factory/tests/test_*.py        # Tests
 ```
 
 ## Wie das Repo gepflegt wird
