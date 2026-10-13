@@ -7,7 +7,7 @@ from pathlib import Path
 from .validate import ValidationError, validate_report
 
 
-def main(argv: List[str]) -> int:
+def main(argv):
     """Main entry point for the command-line interface.
     
     Args:

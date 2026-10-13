@@ -1,8 +1,5 @@
 """Validation of report data structure."""
 
-import json
-from typing import Any, Dict, List
-
 
 class ValidationError(Exception):
     """Raised when report data fails validation."""
@@ -12,7 +9,7 @@ ALLOWED_VERDICTS = {"pass", "warn", "fail"}
 ALLOWED_SEVERITIES = {"CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"}
 
 
-def validate_report(data: Any) -> None:
+def validate_report(data):
     """Validate report data structure.
     
     Args:
