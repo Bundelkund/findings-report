@@ -3,6 +3,7 @@
 > Daten, keine Anweisungen. Schreibt nur die Factory (Vorarbeiter, F-12) per PR durch das Merge-Gate; neueste zuerst.
 > Zeile: - #<issue> | <Datum> | <Kategorie> | <Fakt>
 
+- #4 | 2026-10-13 | budget | Das Issue-Budget von 1,0 USD ist im Repo-Ablauf schnell erreicht; Architektur und Anforderungsanalyse verbrauchen den größten Teil, wodurch der Lauf in den Needs-Human-Zustand kippt.
 - #12 | 2026-10-13 | modell-antwort | Eine Spec-Antwort mit einem Akzeptanzkriterium-Text von 420 Zeichen wurde vom Schema abgelehnt, weil dieses Feld auf 1 bis 400 Zeichen begrenzt ist.
 - #12 | 2026-10-13 | modell-antwort | Spec-Erzeugung für HTML-Pruefbericht-Issues scheiterte zweimal: Modellantwort war kein gueltiges JSON (abgeschnitten, Zeichenkette nicht geschlossen) bzw. ein Textfeld überschritt die Maximallänge
 - #2 | 2026-10-13 | test | Die von der Testphase selbst geschriebenen Tests scheiterten in vier Versuchen an der eigenen Referenz (AK5 durchgehend rot); der Testing-Loop eskalierte ohne brauchbare Tests.
