@@ -1,16 +1,16 @@
 # Testing-Bericht Issue #2
 
-- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `11423e2`
-- Tests geschrieben von `qwen/qwen3-coder-next` aus den Akzeptanzkriterien des Issues (ohne Dev-Code)
+- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `3963cd6`
+- Tests geschrieben von `google/gemini-2.5-flash` aus den Akzeptanzkriterien des Issues (ohne Dev-Code)
 - Ausgefuehrt je Test in einem Wegwerf-Container (Repo nur lesend, ohne Netz), Urteil auf dem Wirt; nachstellen im Repo-Wurzelverzeichnis:
   `for f in factory/tests/test_*.py; do python3 -m unittest -v "$f"; done`
 - AK im Issue: 5 · Beweis-Stufe 3 = Test ausgefuehrt, Ausgabe zitiert
 
-AK1 | pass | Stufe: 3 | Test: test_ak1_valid_report | Ausgabe: test_ak1_valid_report ... ok
-AK2 | pass | Stufe: 3 | Test: test_ak2_file_not_found | Ausgabe: test_ak2_file_not_found ... ok
-AK3 | pass | Stufe: 3 | Test: test_ak3_invalid_json | Ausgabe: test_ak3_invalid_json ... ok
-AK4 | pass | Stufe: 3 | Test: test_ak4_missing_title, test_ak4_missing_verdict, test_ak4_missing_findings | Ausgabe: test_ak4_missing_title ... ok; test_ak4_missing_verdict ... ok; test_ak4_missing_findings ... ok
-AK5 | pass | Stufe: 3 | Test: test_ak5_invalid_verdict, test_ak5_invalid_severity | Ausgabe: test_ak5_invalid_verdict ... ok; test_ak5_invalid_severity ... ok
+AK1 | pass | Stufe: 3 | Test: test_ak1_valid_report_exit_code_and_output | Ausgabe: test_ak1_valid_report_exit_code_and_output ... ok
+AK2 | pass | Stufe: 3 | Test: test_ak2_file_not_exists_exit_code_and_message | Ausgabe: test_ak2_file_not_exists_exit_code_and_message ... ok
+AK3 | pass | Stufe: 3 | Test: test_ak3_invalid_json_exit_code_and_message | Ausgabe: test_ak3_invalid_json_exit_code_and_message ... ok
+AK4 | pass | Stufe: 3 | Test: test_ak4_missing_title_field, test_ak4_missing_verdict_field, test_ak4_missing_findings_field | Ausgabe: test_ak4_missing_title_field ... ok; test_ak4_missing_verdict_field ... ok; test_ak4_missing_findings_field ... ok
+AK5 | pass | Stufe: 3 | Test: test_ak5_invalid_verdict_value, test_ak5_invalid_severity_value | Ausgabe: test_ak5_invalid_verdict_value ... ok; test_ak5_invalid_severity_value ... ok
 
 ## Akzeptanzkriterien (Wortlaut aus dem Issue)
 
