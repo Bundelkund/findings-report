@@ -1,0 +1,15 @@
+{
+  "issue": 25,
+  "repo": "Bundelkund/findings-report",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Das Issue betrifft die HTML-Ausgabe (Befund-Liste, eingebettetes CSS, Kontrast, keine Information nur ueber Farbe) und liegt damit in den Zielen der MISSION.md. Es verlangt weiterhin Escaping der Titel und kein Netzwerk, JavaScript oder Nachladen, also keine Regelverletzung und kein rotes Thema nach RULES.md. Der Schweregrad-Text im Badge sorgt dafuer, dass die Information nicht nur ueber Farbe vermittelt wird.",
+  "size": "S",
+  "size_basis": "Eine Render-Funktion plus etwas CSS in einer Datei (hoechstens ca. 60 Zeilen); Tests liegen unter factory/ und zaehlen nicht mit.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.013266,
+  "ts": "2026-10-22T12:46:08Z"
+}
