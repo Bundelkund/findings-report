@@ -1,38 +1,52 @@
-"""HTML rendering for reports."""
-
 import html
-from collections import Counter
-
+import collections
 
 def render_html(report):
-    """Render a complete HTML page from a validated report.
-    
-    Args:
-        report: The validated report data
-        
-    Returns:
-        Complete HTML string
-    """
-    # Escape all text content from the report
-    title = html.escape(report["title"], quote=True)
-    verdict = html.escape(report["verdict"], quote=True)
+    """Render a report as a self-contained HTML page."""
+    title = html.escape(report.get('title', ''), quote=True)
+    verdict = html.escape(report.get('verdict', ''), quote=True)
     
     # Count findings by severity
-    severity_counter = Counter()
-    for finding in report["findings"]:
-        severity_counter[finding["severity"]] += 1
+    severity_order = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']
+    counter = collections.Counter()
+    for finding in report.get('findings', []):
+        severity = finding.get('severity', '')
+        if severity in severity_order:
+            counter[severity] += 1
     
-    # Sort findings by severity order
-    severity_order = ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"]
-    sorted_findings = []
+    # Sort findings by severity
+    findings = sorted(
+        report.get('findings', []),
+        key=lambda f: (severity_order.index(f.get('severity', 'INFO')) if f.get('severity') in severity_order else len(severity_order), 
+                      report.get('findings', []).index(f))
+    )
+    
+    # Build summary text
+    summary_parts = []
     for severity in severity_order:
-        for finding in report["findings"]:
-            if finding["severity"] == severity:
-                sorted_findings.append(finding)
+        if counter[severity] > 0:
+            summary_parts.append(f"{severity}: {counter[severity]}")
     
-    # Build HTML content
-    html_content = f"""<!DOCTYPE html>
-<html lang="de">
+    summary = "; ".join(summary_parts)
+    
+    # Build findings HTML
+    findings_html = []
+    for finding in findings:
+        finding_id = html.escape(finding.get('id', ''), quote=True)
+        finding_title = html.escape(finding.get('title', ''), quote=True)
+        finding_severity = html.escape(finding.get('severity', ''), quote=True)
+        severity_class = f"badge-{finding_severity.lower()}" if finding_severity else ""
+        
+        findings_html.append(f"""
+        <div class="finding">
+            <span class="badge {severity_class}">{finding_severity}</span>
+            <span class="finding-title" id="{finding_id}">{finding_title}</span>
+        </div>""")
+    
+    findings_html_str = "\n".join(findings_html)
+    
+    return f"""<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,65 +55,75 @@ def render_html(report):
         body {{
             font-family: sans-serif;
             line-height: 1.6;
-            margin: 2rem;
-            max-width: 800px;
-        }}
-        h1 {{
-            color: #333;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 0.5rem;
-        }}
-        .summary {{
-            background-color: #f5f5f5;
+            margin: 0;
             padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 2rem;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow-wrap: anywhere;
         }}
+        
+        h1 {{
+            margin-bottom: 0.5rem;
+        }}
+        
+        .verdict {{
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }}
+        
+        .summary {{
+            margin-bottom: 1.5rem;
+        }}
+        
         .finding {{
             margin-bottom: 1rem;
             padding: 0.5rem;
-            border-left: 4px solid #ccc;
+            border-left: 3px solid #ccc;
         }}
-        .CRITICAL {{ border-left-color: #dc3545; }}
-        .HIGH {{ border-left-color: #fd7e14; }}
-        .MEDIUM {{ border-left-color: #ffc107; }}
-        .LOW {{ border-left-color: #20c997; }}
-        .INFO {{ border-left-color: #6c757d; }}
+        
+        .badge {{
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }}
+        
+        .badge-critical {{
+            background-color: #b00020;
+            color: #ffffff;
+        }}
+        
+        .badge-high {{
+            background-color: #fb8c00;
+            color: #000000;
+        }}
+        
+        .badge-medium {{
+            background-color: #ffd600;
+            color: #000000;
+        }}
+        
+        .badge-low {{
+            background-color: #555555;
+            color: #ffffff;
+        }}
+        
+        .badge-info {{
+            background-color: #e0e0e0;
+            color: #000000;
+        }}
+        
+        .finding-title {{
+            font-weight: bold;
+        }}
     </style>
 </head>
 <body>
     <h1>{title}</h1>
-    <p><strong>Urteil:</strong> {verdict}</p>
-    
-    <div class="summary">
-        <h2>Zusammenfassung</h2>
-"""
-    
-    # Add summary for each severity with findings
-    for severity in severity_order:
-        if severity_counter[severity] > 0:
-            count = severity_counter[severity]
-            html_content += f"        <p>{severity}: {count}</p>\n"
-    
-    html_content += """    </div>
-    
-    <h2>Befunde</h2>
-"""
-    
-    # Add findings in sorted order
-    for finding in sorted_findings:
-        finding_id = html.escape(finding["id"], quote=True)
-        finding_title = html.escape(finding["title"], quote=True)
-        finding_severity = html.escape(finding["severity"], quote=True)
-        
-        html_content += f"""    <div class="finding {finding_severity}">
-        <p><strong>ID:</strong> {finding_id}</p>
-        <p><strong>Titel:</strong> {finding_title}</p>
-        <p><strong>Schwere:</strong> {finding_severity}</p>
-    </div>
-"""
-    
-    html_content += """</body>
+    <div class="verdict">Verdict: {verdict}</div>
+    <div class="summary">Findings: {html.escape(summary, quote=True)}</div>
+    {findings_html_str}
+</body>
 </html>"""
-    
-    return html_content
