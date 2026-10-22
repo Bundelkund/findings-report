@@ -28,8 +28,8 @@ Aenderungen an diesen Pfaden pusht die Factory nie (Pruefung vor jedem Push und 
 ## Groessengrenzen
 
 - Hoechstens 20 Dateien je Runde, hoechstens 100 kB je Datei.
-- Eine Aufgabe muss in einer Dev-Runde (10 Minuten) loesbar sein; groessere Vorhaben gehen als `reject`
-  mit der Bitte, sie zu zerlegen.
+- Eine Aufgabe muss in einer Dev-Runde (10 Minuten) loesbar sein; groessere Vorhaben (Stufe XL) gehen als `needs-human`
+  mit einem Zerlegungsvorschlag.
 
 ## Rote Themen (risk_class rot, immer needs-human)
 
