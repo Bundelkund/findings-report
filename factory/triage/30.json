@@ -1,0 +1,15 @@
+{
+  "issue": 30,
+  "repo": "Bundelkund/findings-report",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Die Zusammenfassungszeile gehört zur HTML-Ausgabe (MISSION.md, Ziele: Kopf mit Titel und Urteil, Zusammenfassung, Befund-Liste). Sie berührt weder Nicht-Ziele noch rote Themen aus RULES.md. Der Beispielbefehl schreibt nur die eine Ausgabedatei, und die Schweregrade sind feste Werte, die escaped ausgegeben werden können.",
+  "size": "S",
+  "size_basis": "Eine Zählfunktion und eine Zeile im HTML-Renderer plus etwas CSS für den Zeilenumbruch bei 390 px; Tests liegen unter factory/ und zählen nicht mit, daher voraussichtlich eine Datei unter 62 Zeilen.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.013358,
+  "ts": "2026-10-23T13:26:09Z"
+}
