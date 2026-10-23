@@ -1,9 +1,11 @@
 import html
-import collections
+from collections import Counter
+
 
 def render_html(report):
-    title = html.escape(report.get('title', ''), quote=True)
-    verdict = html.escape(report.get('verdict', ''), quote=True)
+    """Render a report as a complete HTML page."""
+    title = html.escape(str(report.get('title', '')), quote=True)
+    verdict = html.escape(str(report.get('verdict', '')), quote=True)
     findings = report.get('findings', [])
     
     severity_order = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']
@@ -37,13 +39,20 @@ def render_html(report):
             box-sizing: border-box;
         }}
         h1 {{
-            margin-bottom: 0;
+            margin: 0 0 10px 0;
         }}
         .summary {{
-            margin-top: 0.5em;
-            margin-bottom: 1em;
+            margin: 0 0 20px 0;
             font-weight: bold;
             overflow-wrap: anywhere;
+        }}
+        .verdict {{
+            margin: 0 0 20px 0;
+            font-weight: bold;
+        }}
+        .finding {{
+            margin: 0 0 15px 0;
+            padding: 0;
         }}
         .badge {{
             display: inline-block;
@@ -73,44 +82,41 @@ def render_html(report):
             background-color: #e0e0e0;
             color: #000000;
         }}
-        .finding {{
-            margin-bottom: 1em;
-            padding: 10px;
-            border-left: 3px solid #ccc;
-        }}
     </style>
 </head>
 <body>
     <h1>{title}</h1>
     <p class="summary">{html.escape(summary_text, quote=True)}</p>
-    <p>Verdict: {verdict}</p>
-    <div class="findings">
-'''
+    <p class="verdict">Urteil: {verdict}</p>
+    '''
     
     for finding in sorted_findings:
-        finding_id = html.escape(finding.get('id', ''), quote=True)
-        finding_title = html.escape(finding.get('title', ''), quote=True)
-        finding_severity = html.escape(finding.get('severity', ''), quote=True)
-        severity_class = f"badge-{finding_severity.lower()}"
+        finding_id = html.escape(str(finding.get('id', '')), quote=True)
+        finding_title = html.escape(str(finding.get('title', '')), quote=True)
+        severity = finding.get('severity', '')
+        badge_class = f"badge badge-{severity.lower()}"
         
-        html_content += f'''        <div class="finding" id="{finding_id}">
-            <span class="badge {severity_class}">{finding_severity}</span>
-            {finding_title}
-        </div>
-'''
+        html_content += f'''
+    <div class="finding">
+        <span class="{badge_class}">{html.escape(severity, quote=True)}</span>
+        <strong>{finding_id}</strong>: {finding_title}
+    </div>
+        '''
     
-    html_content += '''    </div>
+    html_content += '''
 </body>
 </html>'''
     
     return html_content
 
+
 def summary_line(findings):
+    """Generate summary line with counts per severity."""
     if not findings:
         return "keine Funde"
     
     severity_order = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']
-    counter = collections.Counter()
+    counter = Counter()
     
     for finding in findings:
         severity = finding.get('severity')
