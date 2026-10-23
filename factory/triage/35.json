@@ -1,0 +1,15 @@
+{
+  "issue": 35,
+  "repo": "Bundelkund/findings-report",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Die Zusammenfassungszeile gehört zur HTML-Ausgabe (MISSION.md, Ziele: Kopf, Zusammenfassung, Befund-Liste) und braucht weder Netzwerk noch neue Abhängigkeiten. Sie berührt kein rotes Thema aus RULES.md. Die Zählung nutzt nur feste Schweregrad-Werte, und der Titel bleibt escaped.",
+  "size": "S",
+  "size_basis": "Eine kleine Zählfunktion und ein paar CSS-Zeilen im HTML-Renderer, also eine Datei und deutlich unter 62 Zeilen; die Tests unter factory/ zählen nicht.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.015148,
+  "ts": "2026-10-23T14:44:28Z"
+}
