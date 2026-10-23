@@ -7,31 +7,48 @@ SEVERITIES = ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO")
 
 def summary_line(findings):
     counts = Counter(finding["severity"] for finding in findings)
-    parts = [f"{counts[severity]} {severity}" for severity in SEVERITIES if counts[severity] > 0]
+    parts = [
+        f"{counts[severity]} {severity}"
+        for severity in SEVERITIES
+        if counts[severity] > 0
+    ]
     return ", ".join(parts) if parts else "keine Funde"
 
 
 def render_html(report):
-    severity_order = {severity: index for index, severity in enumerate(SEVERITIES)}
-    findings = sorted(report["findings"], key=lambda finding: severity_order[finding["severity"]])
-    summary = summary_line(report["findings"])
-    finding_items = "\n".join(
-        f'      <li><span class="badge badge-{escape(finding["severity"].lower(), quote=True)}">'
-        f'{escape(finding["severity"], quote=True)}</span> '
-        f'<strong>{escape(finding["title"], quote=True)}</strong> '
-        f'<code>{escape(finding["id"], quote=True)}</code></li>'
-        for finding in findings
+    findings = report["findings"]
+    severity_index = {severity: index for index, severity in enumerate(SEVERITIES)}
+    sorted_findings = sorted(
+        findings, key=lambda finding: severity_index[finding["severity"]]
     )
-    return f'''<!doctype html>
+    title = escape(str(report["title"]), quote=True)
+    verdict = escape(str(report["verdict"]), quote=True)
+    summary = escape(summary_line(findings), quote=True)
+    legacy_summary = ", ".join(
+        f"{severity}: {sum(finding['severity'] == severity for finding in findings)}"
+        for severity in SEVERITIES
+        if any(finding["severity"] == severity for finding in findings)
+    )
+    items = "\n".join(
+        "      <li><span class=\"badge badge-{severity_class}\">{severity}</span> "
+        "<strong>{finding_title}</strong> <code>{finding_id}</code></li>".format(
+            severity_class=escape(finding["severity"].lower(), quote=True),
+            severity=escape(finding["severity"], quote=True),
+            finding_title=escape(str(finding["title"]), quote=True),
+            finding_id=escape(str(finding["id"]), quote=True),
+        )
+        for finding in sorted_findings
+    )
+    return f"""<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(report["title"], quote=True)}</title>
+  <title>{title}</title>
   <style>
     body {{ font-family: sans-serif; margin: 1rem; overflow-wrap: anywhere; }}
     .summary {{ overflow-wrap: anywhere; }}
-    .badge {{ display: inline-block; padding: 0.2em 0.5em; border-radius: 0.25em; font-weight: bold; }}
+    .badge {{ display: inline-block; padding: 0.15em 0.4em; border-radius: 0.2em; font-weight: bold; }}
     .badge-critical {{ background-color: #b00020; color: #ffffff; }}
     .badge-high {{ background-color: #fb8c00; color: #000000; }}
     .badge-medium {{ background-color: #ffd600; color: #000000; }}
@@ -40,12 +57,13 @@ def render_html(report):
   </style>
 </head>
 <body>
-  <h1>{escape(report["title"], quote=True)}</h1>
-  <p class="summary">{escape(summary, quote=True)}</p>
-  <p>{escape(report["verdict"], quote=True)}</p>
+  <h1>{title}</h1>
+  <p class="summary">{summary}</p>
+  <p class="verdict">Urteil: {verdict}</p>
+  <p class="legacy-summary">{escape(legacy_summary, quote=True)}</p>
   <ul>
-{finding_items}
+{items}
   </ul>
 </body>
 </html>
-'''
+"""
