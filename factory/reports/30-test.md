@@ -1,6 +1,6 @@
 # Testing-Bericht Issue #30
 
-- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `0573af7`
+- Urteil: **pass** · Dev-Runde 2 · Dev-Stand `dc7349f`
 - Tests geschrieben von `z-ai/glm-5.3` aus den Akzeptanzkriterien des Issues (ohne Dev-Code)
 - Ausgefuehrt je Test in einem Wegwerf-Container (Repo nur lesend, ohne Netz), Urteil auf dem Wirt; nachstellen im Repo-Wurzelverzeichnis:
   `for f in factory/tests/test_*.py; do python3 -m unittest -v "$f"; done`
