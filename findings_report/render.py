@@ -8,12 +8,17 @@ def render_html(report):
     
     severity_order = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']
     
-    # Sort findings by severity
-    sorted_findings = sorted(
-        findings,
-        key=lambda f: severity_order.index(f['severity']) if f['severity'] in severity_order else len(severity_order)
-    )
+    # Sort findings by severity and input order
+    def severity_key(finding):
+        severity = finding.get('severity', '')
+        try:
+            return severity_order.index(severity)
+        except ValueError:
+            return len(severity_order)
     
+    sorted_findings = sorted(findings, key=severity_key)
+    
+    # Generate summary line
     summary_text = summary_line(findings)
     
     html_content = f'''<!DOCTYPE html>
@@ -29,26 +34,16 @@ def render_html(report):
             margin: 0;
             padding: 20px;
             max-width: 390px;
-            margin-left: auto;
-            margin-right: auto;
+            box-sizing: border-box;
         }}
         h1 {{
-            margin-bottom: 0.5em;
+            margin-bottom: 0;
         }}
         .summary {{
-            margin-top: 0;
+            margin-top: 0.5em;
             margin-bottom: 1em;
             font-weight: bold;
             overflow-wrap: anywhere;
-        }}
-        .verdict {{
-            font-weight: bold;
-            margin-bottom: 1em;
-        }}
-        .finding {{
-            margin-bottom: 1.5em;
-            padding: 10px;
-            border-left: 4px solid #ccc;
         }}
         .badge {{
             display: inline-block;
@@ -78,13 +73,17 @@ def render_html(report):
             background-color: #e0e0e0;
             color: #000000;
         }}
+        .finding {{
+            margin-bottom: 1em;
+            padding: 10px;
+            border-left: 3px solid #ccc;
+        }}
     </style>
 </head>
 <body>
     <h1>{title}</h1>
     <p class="summary">{html.escape(summary_text, quote=True)}</p>
-    <p class="verdict">Urteil: {verdict}</p>
-    
+    <p>Verdict: {verdict}</p>
     <div class="findings">
 '''
     
@@ -96,7 +95,7 @@ def render_html(report):
         
         html_content += f'''        <div class="finding" id="{finding_id}">
             <span class="badge {severity_class}">{finding_severity}</span>
-            <strong>{finding_title}</strong>
+            {finding_title}
         </div>
 '''
     
@@ -120,7 +119,8 @@ def summary_line(findings):
     
     parts = []
     for severity in severity_order:
-        if counter[severity] > 0:
-            parts.append(f"{counter[severity]} {severity}")
+        count = counter.get(severity, 0)
+        if count > 0:
+            parts.append(f"{count} {severity}")
     
     return ", ".join(parts)
