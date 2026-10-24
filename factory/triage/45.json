@@ -1,0 +1,15 @@
+{
+  "issue": 45,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P2",
+  "reason": "Das optionale Feld 'ort' erweitert das Eingabeformat und die HTML-Ausgabe im Rahmen der Ziele (lesbare Berichte, geprüftes Format). Es verletzt keine Verbote (kein Netzwerk, kein unescaped Output, nur Standardbibliothek) und ist kein rotes Thema.",
+  "risk_class": "gruen",
+  "size": "M",
+  "size_basis": "Änderungen an Validierung und HTML-Generierung, voraussichtlich 2-3 Dateien, unter 250 Zeilen.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000436966,
+  "ts": "2026-10-24T21:51:19Z"
+}

@@ -31,11 +31,13 @@ def render_html(report):
     )
     items = "\n".join(
         "      <li><span class=\"badge badge-{severity_class}\">{severity}</span> "
-        "<strong>{finding_title}</strong> <code>{finding_id}</code></li>".format(
+        "<strong>{finding_title}</strong> <code>{finding_id}</code>{ort}</li>".format(
             severity_class=escape(finding["severity"].lower(), quote=True),
             severity=escape(finding["severity"], quote=True),
             finding_title=escape(str(finding["title"]), quote=True),
             finding_id=escape(str(finding["id"]), quote=True),
+            ort=(" <span class=\"ort\">{}</span>".format(escape(finding["ort"], quote=True))
+                 if "ort" in finding else ""),
         )
         for finding in sorted_findings
     )
