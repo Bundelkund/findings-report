@@ -61,3 +61,6 @@ def validate_report(data):
         if severity not in ALLOWED_SEVERITIES:
             allowed = ", ".join(sorted(ALLOWED_SEVERITIES))
             raise ValidationError(f"unerlaubter severity: {severity} (erlaubt: {allowed})")
+
+        if "ort" in finding and (not isinstance(finding["ort"], str) or not finding["ort"].strip()):
+            raise ValidationError(f"findings[{i}].ort muss nicht-leerer Text sein")
