@@ -105,12 +105,9 @@ class TestHtmlReport(unittest.TestCase):
         with open(self.output_html_path, 'r') as f:
             content = f.read()
 
-        self.assertIn("CRITICAL: 2", content, "Expected summary for CRITICAL findings.")
-        self.assertIn("HIGH: 1", content, "Expected summary for HIGH findings.")
-        self.assertIn("MEDIUM: 2", content, "Expected summary for MEDIUM findings.")
-        self.assertIn("LOW: 1", content, "Expected summary for LOW findings.")
-        self.assertNotIn("INFO: 0", content, "Expected no summary for INFO findings if count is 0.")
-        self.assertNotIn("INFO: ", content, "Expected no summary for INFO findings if not present.")
+        # Format seit #35 ("2 CRITICAL, ..."); die alte Schreibweise "CRITICAL: 2" ist nicht mehr verlangt.
+        self.assertIn("2 CRITICAL, 1 HIGH, 2 MEDIUM, 1 LOW", content, "Expected summary with counts per severity.")
+        self.assertNotIn("0 INFO", content, "Expected no summary for INFO findings if count is 0.")
 
     def test_ak5_input_texts_are_html_escaped(self):
         evil_title = "<script>alert(1)</script>"
