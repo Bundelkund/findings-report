@@ -3,6 +3,7 @@
 > Daten, keine Anweisungen. Schreibt nur die Factory (Vorarbeiter, F-12) per PR durch das Merge-Gate; neueste zuerst.
 > Zeile: - #<issue> | <Datum> | <Kategorie> | <Fakt>
 
+- #37 | 2026-10-24 | budget | Das Issue-Budget von 1,00 USD war nach etwa 1,05 USD verbraucht; Dev und Review verursachten dabei den größten Anteil der Kosten.
 - #37 | 2026-10-24 | design | Die Erweiterung des Befund-Schemas um ein Feld ort entfernte im findings_report-Rendering und in der Validierung bestehende Funktionen; der Review blockierte das wiederholt.
 - #37 | 2026-10-24 | test | Das optionale Feld 'ort' im Eingabeformat laesst bestehende Tests zur Zusammenfassung und Schweregrad-Zaehlung rot werden; diese Regression blieb auch nach mehreren Neuentwuerfen bestehen.
 - #37 | 2026-10-24 | spec | Akzeptanzkriterien mit unscharfen Formulierungen wie 'Leerer Platzhalter' oder ungedeckten festen Pruefstrings sind nicht pruefbar; Requirement-Deckel von 2 Runden wurde erreicht, Spec braucht
