@@ -1,0 +1,15 @@
+{
+  "issue": 58,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P2",
+  "reason": "Das Issue erweitert das Kommandozeilen-Werkzeug um die Option --help, was zu den Zielen der Mission passt (kleines CLI-Tool, Nutzer verstehen die Verwendng). Es verletzt keine Nicht-Ziele oder Verbote und beruehrt kein rotes Thema.",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Aendrung betrifft voraussichtlich eine einzige Datei (Modul findings_report) mit wenigen Zeilen zur Erkennung von --help und Ausgabe einer Verwendungszeile.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000887605,
+  "ts": "2026-10-25T17:24:58Z"
+}
