@@ -17,6 +17,11 @@ def main(argv):
     Returns:
         Exit code (0 for success, 2 for validation errors)
     """
+    if argv == ['--version']:
+        from findings_report import __version__
+        print(f'findings_report {__version__}')
+        return 0
+
     # Configure stdout/stderr for UTF-8
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
