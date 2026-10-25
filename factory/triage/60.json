@@ -1,0 +1,15 @@
+{
+  "issue": 60,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P3",
+  "reason": "Das Issue fordert ein zusätzliches data-id-Attribut für Befund-Listenelemente, ein passendes Feature im Rahmen der Mission (lesbare HTML-Ausgabe, strukturierte Daten). Es berührt keine Nicht-Ziele oder roten Themen; das Escaping wird explizit verlangt und ist bereits vorgeschrieben.",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Nur eine Python-Datei (z.B. der Teil, der li-Elemente erzeugt) muss um die data-id-Attributsetzung erweitert werden; weniger als 62 Zeilen Diff.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000487592,
+  "ts": "2026-10-25T17:31:35Z"
+}
