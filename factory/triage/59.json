@@ -1,0 +1,15 @@
+{
+  "issue": 59,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P3",
+  "reason": "Die Aufgabe fügt eine einfache Warnung auf stderr für Titel über 200 Zeichen hinzu, ohne die HTML-Ausgabe, das Escaping oder sonstige Leitplanken zu verändern. Sie fällt unter die Mission als kleines Verbesserung, verletzt keine Verbote und berührt keine roten Themen.",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Eine Datei, ca. 10 Zeilen zusätzlicher Code für die Längenprüfung und stderr-Ausgabe.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000845407,
+  "ts": "2026-10-25T17:28:49Z"
+}
