@@ -59,6 +59,9 @@ def main(argv):
             # Validate the report structure
             validate_report(data)
             
+            if len(data["title"]) > 200:
+                print("Warnung: Titel hat mehr als 200 Zeichen", file=sys.stderr)
+            
             # Success - print exactly one line with the count
             count = len(data["findings"])
             print(f"OK: {count} Befunde")
@@ -89,6 +92,9 @@ def main(argv):
             
             # Validate the report structure
             validate_report(data)
+            
+            if len(data["title"]) > 200:
+                print("Warnung: Titel hat mehr als 200 Zeichen", file=sys.stderr)
             
             # Render HTML
             html_content = render_html(data)
