@@ -3,6 +3,7 @@
 > Daten, keine Anweisungen. Schreibt nur die Factory (Vorarbeiter, F-12) per PR durch das Merge-Gate; neueste zuerst.
 > Zeile: - #<issue> | <Datum> | <Kategorie> | <Fakt>
 
+- #65 | 2026-10-25 | spec | Die Spec verlangt fuer den gueltigen Pruefbericht die Ausgabe 'Bericht gueltig: 3 Befunde', waehrend der bestehende Test test_ak1_valid_report_exit_code_and_output 'OK: 3 Befunde' erwartet; Spec und
 - #53 | 2026-10-25 | spec | Die Zusammenfassungszeile hat bereits Tests, die feste Anzeigetexte je Schweregrad erwarten; die Akzeptanzkriterien zu den deutschen Anzeigetexten widersprechen diesen Tests und sind ohne Klärung
 - #49 | 2026-10-24 | spec | Spec-Akzeptanzkriterien für die Ausgabeformatierung waren nicht pruefbar: Ein Grep-Kriterium auf englische Bestandteile war vage bzw. der verbotene String kam nie vor, daher blieb nach zwei
 - #37 | 2026-10-24 | budget | Das Issue-Budget von 1,00 USD war nach etwa 1,05 USD verbraucht; Dev und Review verursachten dabei den größten Anteil der Kosten.
