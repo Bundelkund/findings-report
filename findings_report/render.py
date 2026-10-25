@@ -30,7 +30,7 @@ def render_html(report):
         if any(finding["severity"] == severity for finding in findings)
     )
     items = "\n".join(
-        "      <li><span class=\"badge badge-{severity_class}\">{severity}</span> "
+        "      <li data-id=\"{finding_id}\"><span class=\"badge badge-{severity_class}\">{severity}</span> "
         "<strong>{finding_title}</strong> <code>{finding_id}</code>{ort}</li>".format(
             severity_class=escape(finding["severity"].lower(), quote=True),
             severity=escape(finding["severity"], quote=True),
