@@ -1,0 +1,15 @@
+{
+  "issue": 55,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P3",
+  "reason": "Das Hinzufügen einer __version__-Konstante ist eine kleine, unkritische Erweiterung des Pakets, die weder Nicht-Ziele noch Verbote verletzt. Sie passt zu den Zielen der Mission (Paket erweitern) und ist sicher (kein rotes Thema).",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Nur eine Zeile in findings_report/__init__.py hinzufügen.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000424978,
+  "ts": "2026-10-25T13:51:26Z"
+}
