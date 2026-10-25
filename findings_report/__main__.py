@@ -8,6 +8,9 @@ from .validate import ValidationError, validate_report
 from .render import render_html
 
 
+USAGE = "Verwendung: python -m findings_report <bericht.json> [<ausgabe.html>]"
+
+
 def main(argv):
     """Main entry point for the command-line interface.
     
@@ -27,8 +30,12 @@ def main(argv):
     sys.stderr.reconfigure(encoding='utf-8')
     
     # Handle different argument counts
+    if argv == ['--help']:
+        print(USAGE)
+        return 0
+
     if len(argv) == 0 or len(argv) > 2:
-        print("Verwendung: python -m findings_report <bericht.json> [<ausgabe.html>]", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
         return 2
     
     if len(argv) == 1:
