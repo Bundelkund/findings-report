@@ -1,0 +1,15 @@
+{
+  "issue": 57,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P3",
+  "reason": "Das Hinzufügen einer --version Option ist ein kleines Kommandozeilen-Feature, das keine in MISSION.md definierten Nicht-Ziele verletzt und kein rotes Thema berührt. Die Ausgabe ist statisch und ungefährlich.",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Eine Datei (__main__.py) ändern, um die Argparse-Option zu ergänzen und die Version auszugeben.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.00102709,
+  "ts": "2026-10-25T17:21:23Z"
+}
