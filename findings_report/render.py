@@ -5,6 +5,12 @@ from html import escape
 SEVERITIES = ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO")
 
 
+def _ort_html(ort):
+    if ort.startswith("https://"):
+        return '<a href="' + escape(ort, quote=True) + '">' + escape(ort, quote=True) + '</a>'
+    return escape(ort, quote=True)
+
+
 def summary_line(findings):
     counts = Counter(finding["severity"] for finding in findings)
     parts = [
@@ -36,7 +42,7 @@ def render_html(report):
             severity=escape(finding["severity"], quote=True),
             finding_title=escape(str(finding["title"]), quote=True),
             finding_id=escape(str(finding["id"]), quote=True),
-            ort=(" <span class=\"ort\">{}</span>".format(escape(finding["ort"], quote=True))
+            ort=(" <span class=\"ort\">{}</span>".format(_ort_html(finding["ort"]))
                  if "ort" in finding else ""),
         )
         for finding in sorted_findings

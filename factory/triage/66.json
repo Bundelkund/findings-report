@@ -1,0 +1,15 @@
+{
+  "issue": 66,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P2",
+  "reason": "Die Aufgabe erweitert das HTML-Rendering um bedingte Links für Orte, die mit https:// beginnen. Das Escaping wird für alle Attribute beibehalten, wie in den Akzeptanzkriterien gefordert; die Anpassung ist klein und dient dem Missionsziel einer lesbaren HTML-Seite ohne Verstoß gegen Nicht-Ziele oder Verbote.",
+  "risk_class": "gruen",
+  "size": "S",
+  "size_basis": "Eine Python-Datei für die bedingte Link-Ausgabe beim Rendering des Befund-Ortes.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.00108487,
+  "ts": "2026-10-25T18:07:12Z"
+}
