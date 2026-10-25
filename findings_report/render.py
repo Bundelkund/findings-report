@@ -1,8 +1,16 @@
 from collections import Counter
 from html import escape
+import re
 
 
 SEVERITIES = ("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO")
+
+
+def _natural_id_key(fid):
+    s = str(fid).casefold()
+    if re.search(r'\d', s) is None:
+        return (1, (s,))
+    return (0, tuple(int(t) if t.isdigit() else t for t in re.split(r'(\d+)', s)))
 
 
 def _ort_html(ort):
@@ -25,7 +33,7 @@ def render_html(report):
     findings = report["findings"]
     severity_index = {severity: index for index, severity in enumerate(SEVERITIES)}
     sorted_findings = sorted(
-        findings, key=lambda finding: severity_index[finding["severity"]]
+        findings, key=lambda finding: (severity_index[finding["severity"]], _natural_id_key(finding["id"]))
     )
     title = escape(str(report["title"]), quote=True)
     verdict = escape(str(report["verdict"]), quote=True)
