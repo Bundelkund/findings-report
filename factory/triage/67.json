@@ -1,0 +1,15 @@
+{
+  "issue": 67,
+  "repo": "Bundelkund/findings-report",
+  "priority": "P3",
+  "reason": "Die Aufgabe verbessert die Sortierung der Befunde innerhalb eines Schweregrads nach natuerlicher ID-Reihenfolge, was zu den Zielen der lesbaren HTML-Ausgabe passt (MISSION.md Ziele). Kein Verstoss gegen Verbote oder Nicht-Ziele, keine roten Themen.",
+  "risk_class": "gruen",
+  "size": "M",
+  "size_basis": "Aenderungen in einer Quelldatei und einer Testdatei, insgesamt ca. 60 Zeilen.",
+  "verdict": "accept",
+  "stage": 2,
+  "model": "deepseek/deepseek-v4-pro",
+  "tries": 1,
+  "cost_usd": 0.000884416,
+  "ts": "2026-10-25T18:11:10Z"
+}
